@@ -16,7 +16,7 @@ func main() {
 
 	// Create data folder if it doesn't exist
 	dataDir := "data"
-	if _, err := os.Stat(dataDir); os.IsNotExist(err) {
+	if _, err := os.Stat(dataDir); os.IsNotExist(err) { // if it doesn't exist
 		err := os.Mkdir(dataDir, 0755)
 		if err != nil {
 			log.Fatalf("Failed to create data directory: %v", err)

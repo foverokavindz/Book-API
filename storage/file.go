@@ -10,11 +10,12 @@ import (
 	"github.com/foverokavindz/book-api/models"
 )
 
+// provide a thread-safe file-based storage for books
 type BookStore struct {
 	mutex    sync.RWMutex
 	filePath string
 }
-
+// NewBookStore creates a new BookStore instance
 func NewBookStore(filePath string) *BookStore {
 	return &BookStore{
 		filePath: filePath,
@@ -26,7 +27,7 @@ func (s *BookStore) LoadBooks() ([]models.Book, error) {
     s.mutex.RLock()
     defer s.mutex.RUnlock()
 
-    // Create empty books file if it doesn't exist
+    // Create empty books.json file if it doesn't exist
     if _, err := os.Stat(s.filePath); os.IsNotExist(err) {
         if fileCreationError := os.WriteFile(s.filePath, []byte("[]"), 0644); fileCreationError != nil {
             return nil, fmt.Errorf("failed to create books file: %w", fileCreationError)
@@ -35,7 +36,10 @@ func (s *BookStore) LoadBooks() ([]models.Book, error) {
 
     // Read and parse file in one step when possible
     var books []models.Book
+
     booksData, conversionError := os.ReadFile(s.filePath)
+
+	// if err is nil, it means the file was read successfully
     if conversionError != nil {
         return nil, fmt.Errorf("failed to read books file: %w", conversionError)
     }
