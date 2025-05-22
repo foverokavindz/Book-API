@@ -279,3 +279,25 @@ book-api/
 │   └── service.yaml        # Service configuration
 └── README.md               # Documentation
 ```
+
+## Screenshots
+
+### API Testing in Postman
+
+![API Response in Postman](images/Screenshot%202025-03-30%20215028.png)
+
+### Docker Build Process
+
+![Docker Build](images/Screenshot%202025-03-30%20223447.png)
+
+### Docker Container Running
+
+![Docker Container](images/Screenshot%202025-03-30%20223512.png)
+
+### Kubernetes Deployment
+
+![Kubernetes Deployment](images/Screenshot%202025-03-30%20223553.png)
+
+### Minikube Service
+
+![Minikube Service](images/Screenshot%202025-03-30%20223741.png)
